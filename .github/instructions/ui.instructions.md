@@ -20,6 +20,13 @@ Refer to technology-specific instruction files:
 
 ## Core Principles
 
+### Commenting and documentation
+
+- Write comments to explain intent, trade-offs, and non-obvious decisions — not to restate obvious code.
+- Prefer a short, durable comment over a long block that mirrors the code below it.
+- Document reusable component contracts through the `Props` interface and a brief description of what the component is for.
+- Treat stale comments as bugs and update or remove them with the related code change.
+
 ### Testability
 
 - Every interactive element MUST include a `data-testid` attribute
