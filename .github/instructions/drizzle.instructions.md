@@ -59,6 +59,30 @@ export async function getAllGameIds(db: Database): Promise<number[]> {
 
 Seed-derived values must be reproducible across builds. Derive star ratings from a stable hash of the title (`ratingFromTitle`) — **never** `Math.random()`.
 
+## TypeScript formatting rules
+
+- Prefer explicit parameter and return types on exported functions and helper utilities.
+- Keep typed interfaces small and descriptive, and prefer `type` imports when a value is only used as a TypeScript type.
+- Favor clear, single-purpose helpers over overly clever abstractions, and keep function signatures easy to read.
+- The lint config enforces explicit return types on TypeScript functions where the rule is practical; avoid disabled comments unless the API or a framework contract makes the annotation awkward.
+
+## Documentation standards
+
+Every exported function in `db/` and `src/lib/` must use TSDoc/JSDoc and describe the purpose, parameters, and return value. Keep the injectable `db` argument documented so the testing pattern stays clear.
+
+- Start with a single sentence describing why the helper exists.
+- Use `@param` for each input, including the `db` argument when relevant.
+- Use `@returns` to describe the resolved value or side effect.
+- If the function mutates state or relies on a non-obvious choice, explain the reasoning behind it.
+- Delete or update outdated comments whenever the function changes.
+
+```ts
+/** Returns ordered game rows with publisher/category metadata for the storefront. */
+export async function getAllGames(db: Database): Promise<Game[]> {
+  // ...
+}
+```
+
 ## Testing
 
 Unit-test transforms directly and helpers against `createTestDatabase()`. See [`unit-tests.instructions.md`](unit-tests.instructions.md).
